@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-monorepo",
+  "private": true,
+  "scripts": {
+    "client": "cd port-folio && npm run dev",
+    "server": "cd server && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
