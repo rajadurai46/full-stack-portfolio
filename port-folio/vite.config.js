@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://full-stack-portfolio-p0km.onrender.com'
+      '/api': 'https://full-stack-portfolio-ogas.onrender.com'
     }
   }
 })

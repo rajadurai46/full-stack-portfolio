@@ -11,7 +11,7 @@ async function submit(e){
 e.preventDefault()
 setStatus('sending')
 try {
-  const res = await fetch("https://full-stack-portfolio-zfyd.onrender.com/api/contact", {
+  const res = await fetch("https://full-stack-portfolio-ogas.onrender.com/api/contact", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form),
