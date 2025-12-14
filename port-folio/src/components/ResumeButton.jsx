@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ResumeButton() {
   const handleDownload = () => {
-    window.location.href = "/api/resume";  // triggers file download
+    window.location.href = "/api/resume";
   };
 
   return (
