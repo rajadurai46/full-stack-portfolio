@@ -11,7 +11,6 @@ router.post("/", async (req, res) => {
     // Save to MongoDB
     const newMessage = await Contact.create({ name, email, phone, message });
 
-
     // Email Notification
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -35,11 +34,10 @@ Message: ${message}
 
     await transporter.sendMail(mailOptions);
 
-    res.json({ success: true, message: "Message sent successfully!" });
-
+    return res.json({ success: true, message: "Message sent successfully!" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Server Error" });
+    return res.status(500).json({ success: false, message: "Server Error" });
   }
 });
 
