@@ -11,14 +11,14 @@ dotenv.config();
 const app = express();
 
 
-
-app.use(cors({
+const corsOptions = {
     origin: ["https://mern-full-stack-portfolio.vercel.app/", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
-}));
+}
+app.use(cors(corsOptions));
 
-app.options("*", cors());
+app.options("*", cors(corsOptions));
 
 // Middlewares
 app.use(express.json());
