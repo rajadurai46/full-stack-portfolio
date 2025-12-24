@@ -41,7 +41,7 @@ export default function Home() {
                   </a>
                 </ResumeButton>
 
-                <a href="https://full-stack-portfolio-lf6v.onrender.com/api/contact" className="btn btn-outline-danger">
+                <a href="https://mern-full-stack-portfolio.vercel.app/contact" className="btn btn-outline-danger">
                   Contact Me
                 </a>
               </div>

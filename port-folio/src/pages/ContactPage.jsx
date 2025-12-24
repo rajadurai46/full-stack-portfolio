@@ -19,7 +19,7 @@ export default function ContactPage() {
 
     try {
       const res = await fetch(
-        "https://full-stack-portfolio-lf6v.onrender.com",
+        "https://full-stack-portfolio-lf6v.onrender.com/api/contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
