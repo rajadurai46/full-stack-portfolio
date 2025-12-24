@@ -7,6 +7,7 @@ import Experience from "../sections/Experience";
 import ContactPage from "./ContactPage";
 import ResumeButton from "../components/ResumeButton";
 import { ReactTyped } from "react-typed";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -41,9 +42,9 @@ export default function Home() {
                   </a>
                 </ResumeButton>
 
-                <a href="https://mern-full-stack-portfolio.vercel.app/contact" className="btn btn-outline-danger">
+                <Link to="/contact" className="btn btn-outline-danger">
                   Contact Me
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-md-5 text-center" data-aos="zoom-in">
