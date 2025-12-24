@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
     const { name, email, phone, message } = req.body;
 
     // Save to MongoDB
-    const newMessage = await Contact.create({ name, email, phone, message });
+    await Contact.create({ name, email, phone, message });
 
     // Email Notification
     const transporter = nodemailer.createTransport({

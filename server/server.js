@@ -6,19 +6,14 @@ import contactRoutes from "./routes/contactRoutes.js";
 import resumeRoute from "./routes/resumeRoutes.js";
 
 
-
 dotenv.config();
 const app = express();
-
 
 
 app.use(cors());
 
 // Middlewares
 app.use(express.json());
-
-
-
 
 
 // Routes
