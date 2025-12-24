@@ -11,22 +11,32 @@ dotenv.config();
 const app = express();
 
 
-const corsOptions = {
-    origin: ["https://mern-full-stack-portfolio.vercel.app/", "http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 // Middlewares
 app.use(express.json());
 
-// Database
-connectDB();
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "*"
+    );
+    res.header("Access-Control-Allow-Methods", "*");
+    next();
+});
+
+app.options("*", cors());
+
+
 
 // Routes
 app.use("/api/contact", contactRoutes);
 app.use("/api/resume", resumeRoute);
+
+// Database
+connectDB();
 
 // Start Server
 const PORT = process.env.PORT || 5000;
