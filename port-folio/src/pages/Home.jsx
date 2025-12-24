@@ -36,12 +36,12 @@ export default function Home() {
               </p>
               <div className="mt-1 gap-1 d-flex">
                 <ResumeButton>
-                  <a href="/resume" className="btn btn-outline-success">
+                  <a href="https://full-stack-portfolio-lf6v.onrender.com/api/resume" target="_blank" className="btn btn-outline-success">
                     Resume
                   </a>
                 </ResumeButton>
 
-                <a href="/contact" className="btn btn-outline-danger">
+                <a href="https://full-stack-portfolio-lf6v.onrender.com/api/contact" className="btn btn-outline-danger">
                   Contact Me
                 </a>
               </div>
