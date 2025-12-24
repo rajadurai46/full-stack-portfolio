@@ -37,7 +37,7 @@ image: project4,
 repo: "https://github.com/rajadurai46/brainwave-ai",
 link: "https://brain-ai.netlify.app/"
 }
-].map((pro,i)=>({id:i+1,title:`Project ${i+1}`,desc:`${pro.desc}`, image:`${pro.image}`, repo:`${pro.repo}`, live:`${pro.link}`}))
+].map((pro,i)=>({id:i+1, no:`Project ${i+1}`, title:`${pro.title}`, desc:`${pro.desc}`, image:`${pro.image}`, repo:`${pro.repo}`, live:`${pro.link}`}))
 
 export default function ProjectsPage(){
 const perPage = 2
@@ -58,8 +58,8 @@ return (
 {pageItems.map(p=> (
 <div className="col-md-6" key={p.id} data-aos="fade-up">
 <div className="p-3 bg-white rounded-3 card-hover h-100">
-{p.image && <img src={p.image} alt={p.title} className="img-fluid rounded mb-3" />}
-<h5>{p.title}</h5>
+{p.image && <img src={p.image} alt={p.no} className="img-fluid rounded mb-3" />}
+<h5>{p.no}</h5>
 <p className="text-muted">{p.desc}</p>
 <div className="mb-2">
 {(p.tech||[]).map(t=> <span key={t} className="badge text-bg-light me-1">{t}</span>)}

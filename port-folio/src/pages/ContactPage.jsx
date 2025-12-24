@@ -1,32 +1,59 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [status, setStatus] = useState(null);
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handle = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   async function submit(e) {
     e.preventDefault();
     setStatus("sending");
+
     try {
       const res = await fetch(
-        "https://full-stack-portfolio-vfzr.onrender.com/api/contact",
+        "https://full-stack-portfolio-lf6v.onrender.com",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form),
         }
       );
+
       const data = await res.json();
-      if (data) {
-        alert("Message Sent Successfully!");
+
+      if (res.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent!",
+          text: "Thank you for contacting me. I'll get back to you soon.",
+          timer: 2500,
+          showConfirmButton: false,
+        });
+
         setStatus("sent");
+        setForm({ name: "", email: "", phone: "", message: "" });
       } else {
-        alert("Something went wrong");
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: data?.message || "Something went wrong",
+        });
         setStatus("error");
       }
-    } catch {
-      alert("An error occurred. Please try again later.");
+    } catch{
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "An error occurred. Please try again later."
+      });
       setStatus("error");
     }
   }
@@ -35,6 +62,7 @@ export default function ContactPage() {
     <section className="py-5">
       <div className="container">
         <h2 className="h3 mb-3 text-center">Contact Me</h2>
+
         <div className="row">
           <div className="col-md-6">
             <div className="p-3 bg-white rounded-3">
@@ -48,6 +76,7 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
+
           <div className="col-md-6">
             <form className="p-3 bg-white rounded-3" onSubmit={submit}>
               <div className="mb-3">
@@ -60,6 +89,7 @@ export default function ContactPage() {
                   required
                 />
               </div>
+
               <div className="mb-3">
                 <label className="form-label">Email</label>
                 <input
@@ -70,16 +100,20 @@ export default function ContactPage() {
                   type="email"
                   required
                 />
+              </div>
+
+              <div className="mb-3">
                 <label className="form-label">Phone</label>
                 <input
                   name="phone"
                   value={form.phone}
                   onChange={handle}
                   className="form-control"
-                  type="phone"
+                  type="tel"
                   required
                 />
               </div>
+
               <div className="mb-3">
                 <label className="form-label">Message</label>
                 <textarea
@@ -91,24 +125,14 @@ export default function ContactPage() {
                   required
                 ></textarea>
               </div>
+
               <button
                 className="btn btn-accent"
                 type="submit"
-                onChange={submit}
+                disabled={status === "sending"}
               >
-                Send
+                {status === "sending" ? "Sending..." : "Send"}
               </button>
-              {status === "sending" && <span className="ms-2">Sending...</span>}
-              {status === "sent" && (
-                <span className="ms-2 text-success">
-                  Sent! I'll reply soon.
-                </span>
-              )}
-              {status === "error" && (
-                <span className="ms-2 text-danger">
-                  Error. Try again later.
-                </span>
-              )}
             </form>
           </div>
         </div>
@@ -116,3 +140,4 @@ export default function ContactPage() {
     </section>
   );
 }
+

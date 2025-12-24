@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://full-stack-portfolio-vfzr.onrender.com'
+      '/api': 'https://full-stack-portfolio-lf6v.onrender.com'
     }
   }
 })

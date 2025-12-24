@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ResumeButton() {
   const handleDownload = () => {
-    window.location.href = "https://full-stack-portfolio-ii6s.onrender.com/api/resume";
+    window.location.href = "https://full-stack-portfolio-lf6v.onrender.com";
   };
 
   return (
