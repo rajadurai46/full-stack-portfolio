@@ -7,19 +7,21 @@ import resumeRoute from "./routes/resumeRoutes.js";
 
 
 
-
 dotenv.config();
 const app = express();
 
 
 
-// Middlewares
-app.use(express.json());
-
 app.use(cors({
     origin: ["https://mern-full-stack-portfolio.vercel.app/", "http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
+
+app.options("*", cors());
+
+// Middlewares
+app.use(express.json());
 
 // Database
 connectDB();
