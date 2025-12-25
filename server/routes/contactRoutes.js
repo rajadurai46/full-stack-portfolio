@@ -4,41 +4,51 @@ import nodemailer from "nodemailer";
 
 const router = express.Router();
 
+// Create transporter ONCE (not per request)
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 router.post("/", async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;
 
-    // Save to MongoDB
+    // Save to MongoDB (FAST)
     await Contact.create({ name, email, phone, message });
 
-    // Email Notification
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "rj46jr@gmail.com",
-        pass: "Madurai@1998",
-      },
+    // Respond IMMEDIATELY (DON'T WAIT FOR EMAIL)
+    res.status(201).json({
+      success: true,
+      message: "Message sent successfully!",
     });
 
-    const mailOptions = {
-      from: email,
-      to: "rj46jr@gmail.com",
-      subject: "Portfolio Contact Form",
+    // Send email ASYNC (non-blocking)
+    transporter.sendMail({
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "New Portfolio Contact Message",
       text: `
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
 Message: ${message}
-`,
-    };
+      `,
+    }).catch((err) => {
+      console.error("Email error:", err.message);
+    });
 
-    await transporter.sendMail(mailOptions);
-
-    return res.json({ success: true, message: "Message sent successfully!" });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
   }
 });
 
 export default router;
+
