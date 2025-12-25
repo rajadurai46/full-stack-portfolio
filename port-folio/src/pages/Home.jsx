@@ -37,7 +37,7 @@ export default function Home() {
               </p>
               <div className="mt-1 gap-1 d-flex">
                 <ResumeButton>
-                  <a href="https://full-stack-portfolio-lf6v.onrender.com/api/resume" target="_blank" className="btn btn-outline-success">
+                  <a href="https://full-stack-portfolio-3zve.onrender.com/api/resume" target="_blank" className="btn btn-outline-success">
                     Resume
                   </a>
                 </ResumeButton>
